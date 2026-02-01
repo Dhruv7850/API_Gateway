@@ -3,7 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const { UserService } = require('../services');
 
 const{SuccessResponse, ErrorResponse} = require('../utils/common');
-const { create } = require('../services/user-service');
+const { create } = require('../services');
 
 
 async function signup (req,res){
