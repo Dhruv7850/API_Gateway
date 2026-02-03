@@ -16,8 +16,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(limiter);
 
 app.use('/flightService',createProxyMiddleware({
-  target: 'http://localhost:3000',
+  target: ServerConfig.FLIGHT_SERIVCE,
   changeOrigin: true,
+  pathRewrite :{'^/flightService':'/'}
 }));
 
 
