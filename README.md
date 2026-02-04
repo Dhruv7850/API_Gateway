@@ -1,48 +1,59 @@
-This is a base node js project template, which anyone can use as it has been prepared, by keeping some of the most important code principles and project management recommendations. Feel free to change anything. 
+API Gateway & Authentication Service
+This repository contains the API Gateway and Authentication Service for a microservices-based architecture. Built with Node.js and Express, it handles user registration, authentication (JWT), and role-based access control (RBAC).
+
+Features
+User Management: Complete signup and signin functionality with encrypted passwords.
+
+Authentication: Secure authentication using JSON Web Tokens (JWT).
+
+Authorization (RBAC): Role-based access control allowing specific permissions for roles like ADMIN, CUSTOMER, and FLIGHT_COMPANY.
+
+Middleware Protection: Request validation and authentication checks for protected routes.
+
+Database Integration: Uses Sequelize ORM with MySQL for managing users and roles.
+
+Structured Error Handling: Centralized error management using custom AppError classes.
+
+Project Structure
+The project follows a modular architecture for scalability and maintainability:
+
+src/config: Environment and server configurations, including Logger setup.
+
+src/controllers: Handles incoming HTTP requests and interacts with services.
+
+src/middlewares: Intercepts requests for validation and authentication (e.g., checking if a user is an admin).
+
+src/models: Sequelize models for User, Role, and the junction table User_Role.
+
+src/repositories: Encapsulates database logic using the Repository Pattern.
+
+src/routes: API endpoint definitions categorized by version (V1).
+
+src/services: Contains business logic, such as password hashing and token generation.
+
+src/utils: Common helpers, enums, and success/error response formatters.
+
+Tech Stack
+Runtime: Node.js
+
+Framework: Express.js
+
+Database: MySQL
+
+ORM: Sequelize
+
+Security: bcrypt (hashing), jsonwebtoken (JWT)
+
+Logging: Winston
+
+Installation
+Clone the repository:
 
 
-`src` -> Inside the src folder all the actual source code regarding the project will reside, this will not include any kind of tests. (You might want to make separate tests folder)
+`git clone <repository-url>`
+`cd API_Gateway`
 
-Lets take a look inside the `src` folder
+Install dependencies:
 
- - `config` -> In this folder anything and everything regarding any configurations or setup of a library or module will be done. For example: setting up `dotenv` so that we can use the environment variables anywhere in a cleaner fashion, this is done in the `server-config.js`. One more example can be to setup you logging library that can help you to prepare meaningful logs, so configuration for this library should also be done here. 
+`npm install`
 
- - `routes` -> In the routes folder, we register a route and the corresponding middleware and controllers to it. 
-
- - `middlewares` -> they are just going to intercept the incoming requests where we can write our validators, authenticators etc. 
-
- - `controllers` -> they are kind of the last middlewares as post them you call you business layer to execute the budiness logic. In controllers we just receive the incoming requests and data and then pass it to the business layer, and once business layer returns an output, we structure the API response in controllers and send the output. 
-
- - `repositories` -> this folder contains all the logic using which we interact the DB by writing queries, all the raw queries or ORM queries will go here.
-
- - `services` -> contains the buiness logic and interacts with repositories for data from the database
-
- - `utils` -> contains helper methods, error classes etc.
-
-### Setup the project
-
- - Download this template from github and open it in your favourite text editor. 
- - Go inside the folder path and execute the following command:
-  ```
-  npm install
-  ```
- - In the root directory create a `.env` file and add the following env variables
-    ```
-        PORT=<port number of your choice>
-    ```
-    ex: 
-    ```
-        PORT=3000
-    ```
- - go inside the `src` folder and execute the following command:
-    ```
-      npx sequelize init
-    ```
- - By executing the above command you will get migrations and seeders folder along with a config.json inside the config folder. 
- - If you're setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using for ex: mysql, mariadb etc
- - If you're setting up test or prod environment, make sure you also replace the host with the hosted db url.
-
- - To run the server execute
- ```
- npm run dev
- ```
