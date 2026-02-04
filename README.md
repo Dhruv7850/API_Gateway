@@ -1,4 +1,6 @@
 API Gateway & Authentication Service
+
+
 This repository contains the API Gateway and Authentication Service for a microservices-based architecture. Built with Node.js and Express, it handles user registration, authentication (JWT), and role-based access control (RBAC).
 
 Features
